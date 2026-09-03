@@ -1,10 +1,14 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
+  // Retorno temprano para permitir acceso libre a todas las vistas durante la maquetación
+  return NextResponse.next();
+
+  /* LÓGICA DE PROTECCIÓN COMENTADA TEMPORALMENTE
   const path = request.nextUrl.pathname;
 
   // Rutas públicas que no requieren validación
-  if (path.startsWith("/api/auth") || path.startsWith("/_next") || path === "/favicon.ico") {
+  if (path.startsWith("/api/auth") || path.startsWith("/playground") || path.startsWith("/_next") || path === "/favicon.ico") {
     return NextResponse.next();
   }
 
@@ -23,6 +27,7 @@ export async function middleware(request: NextRequest) {
   }
 
   return NextResponse.next();
+  */
 }
 
 export const config = {
